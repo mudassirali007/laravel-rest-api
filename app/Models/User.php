@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'fb_id',
     ];
 
     /**
@@ -40,5 +41,8 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+    ];
+    protected $appends = [
+        'profile_photo_url',
     ];
 }

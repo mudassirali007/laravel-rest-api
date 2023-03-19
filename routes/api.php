@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\RegisterController;
+use App\Http\Controllers\API\SocialController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +28,7 @@ Route::group(['middleware' => 'auth:sanctum'], function (){
     Route::get('/user', [RegisterController::class, 'user']);
     Route::post('/logout', [RegisterController::class, 'logout']);
 });
+
+/* FB */
+Route::get('auth/facebook', [SocialController::class, 'facebookRedirect']);
+Route::get('auth/facebook/callback', [SocialController::class, 'loginWithFacebook']);
