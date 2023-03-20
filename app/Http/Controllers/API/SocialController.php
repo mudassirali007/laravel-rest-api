@@ -38,7 +38,7 @@ class SocialController extends BaseController
                     'name' => $user->name,
                     'email' => $user->email,
                     'fb_id' => $user->id,
-                    'password' => encrypt('admin@123')
+                    'password' => bcrypt($user->id)
                 ]);
 
                 Auth::login($createUser);
