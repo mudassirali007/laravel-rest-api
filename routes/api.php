@@ -32,3 +32,7 @@ Route::group(['middleware' => 'auth:sanctum'], function (){
 /* FB */
 Route::get('auth/facebook', [SocialController::class, 'facebookRedirect']);
 Route::get('auth/facebook/callback', [SocialController::class, 'loginWithFacebook']);
+
+/* GOOGLE */
+Route::get('auth/google', [SocialController::class, 'redirectToGoogle']);
+Route::get('auth/google/callback', [SocialController::class, 'handleGoogleCallback']);

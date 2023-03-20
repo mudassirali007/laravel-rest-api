@@ -28,7 +28,6 @@ class SocialController extends BaseController
             $user = Socialite::driver('facebook')->stateless()->user();
             $isUser = User::where('fb_id', $user->id)->first();
 
-
             if($isUser){
                 Auth::login($isUser);
 //                 return redirect('/dashboard');
@@ -53,7 +52,44 @@ class SocialController extends BaseController
 
         } catch (Exception $exception) {
 //             dd($exception->getMessage());
-            return redirect(\Config::get('app.front_app_url').'/login?errorMessageFb=Unauthorized');
+            return redirect(\Config::get('app.front_app_url').'/login?errorMessage=Unauthorized');
+
+        }
+    }
+
+    public function redirectToGoogle()
+    {
+        return Socialite::driver('google')->stateless()->redirect();
+    }
+
+    public function handleGoogleCallback()
+    {
+    try {
+        $user = Socialite::driver('google')->stateless()->user();
+
+        $isUser = User::where('google_id', $user->id)->first();
+
+        if($isUser){
+            Auth::login($isUser);
+//             return redirect()->intended('dashboard');
+        }else{
+            $newUser = User::create([
+                'name' => $user->name,
+                'email' => $user->email,
+                'google_id'=> $user->id,
+                'password' => bcrypt($user->id)
+            ]);
+            Auth::login($newUser);
+//             return redirect()->intended('dashboard');
+        }
+        $user = Auth::user();
+        $success['token'] =  $user->createToken('MyApp')->plainTextToken;
+        $success['name'] =  $user->name;
+        $success['email'] =  $user->email;
+        return redirect(\Config::get('app.front_app_url').'/login?token='.$success['token']);
+        } catch (Exception $e) {
+//             dd($e->getMessage());
+            return redirect(\Config::get('app.front_app_url').'/login?errorMessage=Unauthorized');
 
         }
     }
