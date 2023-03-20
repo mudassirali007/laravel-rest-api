@@ -48,7 +48,7 @@ class SocialController extends BaseController
             $success['token'] =  $user->createToken('MyApp')->plainTextToken;
             $success['name'] =  $user->name;
             $success['email'] =  $user->email;
-            return redirect(\Config::get('app.front_app_url').'?token='.$success['token']);
+            return redirect(\Config::get('app.front_app_url').'/login?token='.$success['token']);
             return $this->sendResponse($success, 'User login successfully.');
 
         } catch (Exception $exception) {
