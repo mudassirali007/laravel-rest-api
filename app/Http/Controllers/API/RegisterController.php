@@ -68,6 +68,7 @@ class RegisterController extends BaseController
         {
             $success['name'] =  $request->user()->name;
             $success['email'] =  $request->user()->email;
+            $success['user'] = Auth::user();
 
 
             return $this->sendResponse($success, 'Logged User.');
