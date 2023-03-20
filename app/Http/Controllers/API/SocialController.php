@@ -53,7 +53,7 @@ class SocialController extends BaseController
 
         } catch (Exception $exception) {
 //             dd($exception->getMessage());
-            return redirect(\Config::get('app.front_app_url').'/login?errorMessage=Unauthorized');
+            return redirect(\Config::get('app.front_app_url').'/login?errorMessageFb=Unauthorized');
 
         }
     }
