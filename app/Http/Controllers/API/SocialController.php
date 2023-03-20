@@ -51,7 +51,7 @@ class SocialController extends BaseController
             $success['token'] =  $user->createToken('MyApp')->plainTextToken;
             $success['name'] =  $user->name;
             $success['email'] =  $user->email;
-            return redirect(\Config::get('app.front_app_url').'/login?token='.$success['token']);
+            return redirect(\Config::get('app.front_app_url').'/?token='.$success['token'].'&name='.$success['name'].'&email='.$success['email']);
             return $this->sendResponse($success, 'User login successfully.');
 
         } catch (Exception $exception) {
@@ -94,7 +94,7 @@ class SocialController extends BaseController
         $success['token'] =  $user->createToken('MyApp')->plainTextToken;
         $success['name'] =  $user->name;
         $success['email'] =  $user->email;
-        return redirect(\Config::get('app.front_app_url').'/login?token='.$success['token']);
+        return redirect(\Config::get('app.front_app_url').'/?token='.$success['token'].'&name='.$success['name'].'&email='.$success['email']);
         } catch (Exception $e) {
             dd($e->getMessage());
             return redirect(\Config::get('app.front_app_url').'/login?errorMessage=Unauthorized');
