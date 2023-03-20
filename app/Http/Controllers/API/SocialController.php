@@ -52,7 +52,9 @@ class SocialController extends BaseController
             return $this->sendResponse($success, 'User login successfully.');
 
         } catch (Exception $exception) {
-            dd($exception->getMessage());
+//             dd($exception->getMessage());
+            return redirect(\Config::get('app.front_app_url').'/login?errorMessage=Unauthorized');
+
         }
     }
 
