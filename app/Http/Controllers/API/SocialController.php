@@ -33,14 +33,18 @@ class SocialController extends BaseController
 //                 return redirect('/dashboard');
 
             }else{
-                $createUser = User::create([
-                    'name' => $user->name,
-                    'email' => $user->email,
-                    'fb_id' => $user->id,
-                    'password' => bcrypt($user->id)
-                ]);
+                $newUser = User::updateOrCreate(
+                    ['email' => $user->email],
+                    ['name' => $user->name, 'fb_id' => $user->id]
+                );
+//                 $newUser = User::create([
+//                     'name' => $user->name,
+//                     'email' => $user->email,
+//                     'fb_id' => $user->id,
+//                     'password' => bcrypt($user->id)
+//                 ]);
 
-                Auth::login($createUser);
+                Auth::login($newUser);
 //                 return redirect('/dashboard');
             }
             $user = Auth::user();
@@ -72,13 +76,17 @@ class SocialController extends BaseController
         if($isUser){
             Auth::login($isUser);
 //             return redirect()->intended('dashboard');
-        }else{
-            $newUser = User::create([
-                'name' => $user->name,
-                'email' => $user->email,
-                'google_id'=> $user->id,
-                'password' => bcrypt($user->id)
-            ]);
+        } else {
+            $newUser = User::updateOrCreate(
+                ['email' => $user->email],
+                ['name' => $user->name, 'google_id' => $user->id]
+            );
+//             $newUser = User::create([
+//                 'name' => $user->name,
+//                 'email' => $user->email,
+//                 'google_id'=> $user->id,
+//                 'password' => bcrypt($user->id)
+//             ]);
             Auth::login($newUser);
 //             return redirect()->intended('dashboard');
         }
