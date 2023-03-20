@@ -88,7 +88,7 @@ class SocialController extends BaseController
         $success['email'] =  $user->email;
         return redirect(\Config::get('app.front_app_url').'/login?token='.$success['token']);
         } catch (Exception $e) {
-//             dd($e->getMessage());
+            dd($e->getMessage());
             return redirect(\Config::get('app.front_app_url').'/login?errorMessage=Unauthorized');
 
         }
