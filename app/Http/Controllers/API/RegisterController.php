@@ -69,12 +69,16 @@ class RegisterController extends BaseController
     }
 
     public function user(Request $request)
-        {
-            $success['name'] =  $request->user()->name;
-            $success['email'] =  $request->user()->email;
+    {
+        $success['name'] =  $request->user()->name;
+        $success['email'] =  $request->user()->email;
 
 
 
-            return $this->sendResponse($success, 'Logged User.');
-        }
+        return $this->sendResponse($success, 'Logged User.');
+    }
+    public function user(Request $request)
+    {
+        return $this->sendResponse([], 'Tested');
+    }
 }

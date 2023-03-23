@@ -22,6 +22,7 @@ use App\Http\Controllers\API\SocialController;
 Route::controller(RegisterController::class)->group(function(){
     Route::post('register', 'register');
     Route::post('login', 'login');
+    Route::get('test', 'test');
 });
 
 Route::group(['middleware' => 'auth:sanctum'], function (){
