@@ -77,7 +77,7 @@ class RegisterController extends BaseController
 
         return $this->sendResponse($success, 'Logged User.');
     }
-    public function user(Request $request)
+    public function test(Request $request)
     {
         return $this->sendResponse([], 'Tested');
     }
