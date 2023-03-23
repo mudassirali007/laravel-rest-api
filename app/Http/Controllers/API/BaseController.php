@@ -22,6 +22,7 @@ class BaseController extends Controller
             'data'    => $result,
             'message' => $message,
         ];
+        header('Access-Control-Allow-Origin: *');
 
 
         return response()->json($response, 200);
