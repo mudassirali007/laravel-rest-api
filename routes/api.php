@@ -19,10 +19,17 @@ use App\Http\Controllers\API\SocialController;
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
+
+Route::middleware(['cors'])->group(function () {
+    Route::controller(RegisterController::class)->group(function(){
+        Route::get('test', 'test');
+    });
+});
+
 Route::controller(RegisterController::class)->group(function(){
     Route::post('register', 'register');
     Route::post('login', 'login');
-    Route::get('test', 'test');
+//     Route::get('test', 'test');
 });
 
 Route::group(['middleware' => 'auth:sanctum'], function (){
