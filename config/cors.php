@@ -19,7 +19,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => [env('FRONT_APP_URL', 'http://localhost'),'*'],
+    'allowed_origins' => ['*'],
 
     'allowed_origins_patterns' => [],
 
